@@ -10,13 +10,15 @@ import (
 )
 
 func main() {
-	summary := `
-		# 1. Intro
-		- [Intro](./readme/intro.md)
-		# 2. Development
-		- [Development](./readme/development.md)
-	`
-	lines := getLinesFromString(summary)
+	summaryPath := "readme/summary.md"
+	summary, err := ioutil.ReadFile(summaryPath)
+
+	if err != nil {
+		fmt.Println("Could not find summary at", summaryPath)
+		log.Fatal(err)
+	}
+
+	lines := getLinesFromString(string(summary))
 	var paths []string
 	for _, line := range lines {
 		path, err := getPathFromReference(line)

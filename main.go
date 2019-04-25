@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -10,9 +11,11 @@ import (
 )
 
 func main() {
-	summaryPath := "readme/summary.md"
-	summary, err := ioutil.ReadFile(summaryPath)
+	summaryPath := flag.String("input", "summary.md", "File that contains the file paths to be compiled")
+	outputPath := flag.String("output", "README.md", "File path to the output file")
+	flag.Parse()
 
+	summary, err := ioutil.ReadFile(*summaryPath)
 	if err != nil {
 		fmt.Println("Could not find summary at", summaryPath)
 		log.Fatal(err)
@@ -29,7 +32,8 @@ func main() {
 			paths = append(paths, path)
 		}
 	}
-	compilePaths(paths)
+
+	compilePaths(*outputPath, paths)
 }
 
 func getLinesFromString(input string) []string {
@@ -58,7 +62,7 @@ func getPathFromReference(line string) (string, error) {
 	return string(submatchs[filePathGroup]), nil
 }
 
-func compilePaths(filePaths []string) {
+func compilePaths(outputPath string, filePaths []string) {
 	var content []byte
 	contentSeparator := []byte("\n\n")
 
@@ -75,7 +79,6 @@ func compilePaths(filePaths []string) {
 		content = append(content, data...)
 	}
 
-	outputPath := "./README.md"
 	err := ioutil.WriteFile(outputPath, content, 0644)
 	if err != nil {
 		log.Fatal("Could not write file at", outputPath)

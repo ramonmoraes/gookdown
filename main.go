@@ -3,6 +3,8 @@ package main
 import (
 	"errors"
 	"fmt"
+	"io/ioutil"
+	"log"
 	"regexp"
 	"strings"
 )
@@ -55,6 +57,25 @@ func getPathFromReference(line string) (string, error) {
 }
 
 func compilePaths(filePaths []string) {
-	// load content from every path
-	// write it in order
+	var content []byte
+	contentSeparator := []byte("\n\n")
+
+	for i, path := range filePaths {
+		data, err := ioutil.ReadFile(path)
+		if err != nil {
+			log.Fatal("File in path not fount", path)
+		}
+
+		if i != 0 {
+			content = append(content, contentSeparator...)
+		}
+
+		content = append(content, data...)
+	}
+
+	outputPath := "./output.md"
+	err := ioutil.WriteFile(outputPath, content, 0644)
+	if err != nil {
+		log.Fatal("Could not write file at", outputPath)
+	}
 }

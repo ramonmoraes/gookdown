@@ -11,10 +11,10 @@ import (
 
 func main() {
 	summary := `
-		# 1. Introdução
-		- [Introdução](./files/foo.md)
-		# 2. Objetos de Estudo
-		- [grafos](./files/foo.md)
+		# 1. Intro
+		- [Intro](./readme/intro.md)
+		# 2. Development
+		- [Development](./readme/development.md)
 	`
 	lines := getLinesFromString(summary)
 	var paths []string
@@ -73,7 +73,7 @@ func compilePaths(filePaths []string) {
 		content = append(content, data...)
 	}
 
-	outputPath := "./output.md"
+	outputPath := "./README.md"
 	err := ioutil.WriteFile(outputPath, content, 0644)
 	if err != nil {
 		log.Fatal("Could not write file at", outputPath)

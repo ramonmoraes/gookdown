@@ -30,7 +30,7 @@ func Compile(inputPath string, outputPath string) {
 		}
 	}
 
-	compiledContent := getCompiledContent(outputPath, filePaths)
+	compiledContent := getCompiledContent(filePaths)
 	err = ioutil.WriteFile(outputPath, compiledContent, 0644)
 	if err != nil {
 		fmt.Println("Could not write file at", outputPath)
@@ -64,7 +64,7 @@ func getPathFromReference(line string) (string, error) {
 	return string(submatchs[filePathGroup]), nil
 }
 
-func getCompiledContent(outputPath string, filePaths []string) []byte {
+func getCompiledContent(filePaths []string) []byte {
 	var content []byte
 	contentSeparator := []byte("\n\n")
 

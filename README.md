@@ -25,3 +25,7 @@ gookdown -input="./foo" -output="./bar"
 ## Runing
 
 `$ go run main.go`
+
+## Testing
+
+`$ go test ./...`

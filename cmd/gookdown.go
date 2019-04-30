@@ -14,7 +14,7 @@ import (
 func Compile(inputPath string, outputPath string) {
 	summary, err := ioutil.ReadFile(inputPath)
 	if err != nil {
-		fmt.Println("Could not find summary at", inputPath)
+		fmt.Println("Could not find input at", inputPath)
 		log.Fatal(err)
 	}
 
@@ -26,6 +26,7 @@ func Compile(inputPath string, outputPath string) {
 			fmt.Println("Could not find path for", line)
 		}
 		if path != "" {
+			fmt.Println("Will be compiling file at", line)
 			filePaths = append(filePaths, path)
 		}
 	}

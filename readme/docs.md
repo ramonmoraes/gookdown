@@ -1,7 +1,3 @@
-# GookDown
-
-Make your docs/texts/articles organized by splitting the text by files, and compile them all together effortlessly
-
 # Usage
 
 Just run 
@@ -29,13 +25,3 @@ To change the input and output files, pass it's flags
 ```
 gookdown -input="./foo" -output="./bar"
 ```
-
-# Development
-
-## Runing
-
-`$ go run main.go`
-
-## Testing
-
-`$ go test ./...`

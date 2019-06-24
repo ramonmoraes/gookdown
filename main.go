@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 
-	"./cmd"
+	gookdown "github.com/ramonmoraes/gookDown/cmd"
 )
 
 func main() {

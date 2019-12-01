@@ -5,7 +5,7 @@ Make your docs/texts/articles organized by splitting the text by files, and comp
 # Usage
 Install by:
 ```go
-go get github.com/ramonmoraes/gookDown
+go get github.com/ramonmoraes/gookdown
 ```
 
 Then just run 
